@@ -1,3 +1,5 @@
+import eventlet
+eventlet.monkey_patch()
 import os
 import sqlite3
 import re
@@ -1190,6 +1192,7 @@ def not_found(_error):
 init_db()
 
 if __name__ == "__main__":
+    socketio.run(app)
     print("GoldenHammer is starting at http://127.0.0.1:5000")
     print("Demo admin: admin@goldenhammer.local / ChangeMe123!")
     socketio.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", "5000")), debug=os.environ.get("FLASK_DEBUG","1")=="1", allow_unsafe_werkzeug=True)
